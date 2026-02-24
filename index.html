@@ -13,7 +13,7 @@
         <header class="header">
           <h1 class="header__title">The Simple ToDo App</h1>
           <p class="header__banner">Do these things</p>
-          <button class="button button_action_add header__button">
+          <button class="button button_action_add header__button" type="button">
             + Add Todo
           </button>
           <div class="popup" id="add-todo-popup">
@@ -81,15 +81,18 @@
                   <ul class="todo__buttons">
                     <!-- List is used to support future additional buttons -->
                     <li>
-                      <button class="todo__delete-btn" type="button"></button>
+                      <button
+                        class="todo__delete-btn"
+                        type="button"
+                        aria-label="Delete todo"
+                      ></button>
                     </li>
                   </ul>
                 </li>
               </template>
             </ul>
           </section>
-          <script src="./pages/index.js" defer></script>
-          <script src="./scripts/validate.js" defer></script>
+          <script type="module" src="./pages/index.js"></script>
         </main>
       </div>
     </div>
