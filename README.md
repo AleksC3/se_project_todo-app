@@ -70,4 +70,4 @@ Responsive design
 
 This project is deployed on GitHub Pages:
 
-https://github.com/AleksC3/se_project_todo-app
+https://AleksC3.github.io/se_project_todo-app/
