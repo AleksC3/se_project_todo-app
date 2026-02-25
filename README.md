@@ -50,8 +50,24 @@ GitHub Pages for deployment
 
 Prettier for code formatting
 
+Key Technical Concepts
+
+Object-Oriented Programming (OOP)
+
+Encapsulation of logic into separate classes (Todo, FormValidator)
+
+DOM manipulation using JavaScript
+
+Event handling (click, submit, keydown)
+
+Accessibility best practices (aria-labels, proper form labeling)
+
+Dynamic ID linking between inputs and labels
+
+Responsive design
+
 ## Deployment
 
 This project is deployed on GitHub Pages:
 
-👉 https://your-username.github.io/simple-todo-app/
+https://github.com/AleksC3/se_project_todo-app
