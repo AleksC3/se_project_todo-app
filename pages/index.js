@@ -1,13 +1,9 @@
 import { v4 as uuidv4 } from "https://jspm.dev/uuid";
-console.log(uuidv4());
 
 import { initialTodos, validationConfig } from "../utils/constants.js";
 import Todo from "../components/Todo.js";
 //import
 import FormValidator from "../components/FormValidator.js";
-
-console.log(initialTodos);
-console.log(validationConfig);
 
 const addTodoButton = document.querySelector(".button_action_add");
 const addTodoPopup = document.querySelector("#add-todo-popup");
@@ -15,6 +11,16 @@ const addTodoForm = addTodoPopup.querySelector(".popup__form");
 const addTodoCloseBtn = addTodoPopup.querySelector(".popup__close");
 // const todoTemplate = document.querySelector("#todo-template"); -> remove
 const todosList = document.querySelector(".todos__list");
+
+const counterText = document.querySelector(".counter__text");
+
+const updateCounter = () => {
+  const total = document.querySelectorAll(".todo").length;
+  const completed = document.querySelectorAll(
+    ".todo__completed:checked"
+  ).length;
+  counterText.textContent = `Showing ${completed} out of ${total} completed`;
+};
 
 const newTodoValidator = new FormValidator(validationConfig, addTodoForm);
 newTodoValidator.enableValidation();
@@ -40,7 +46,7 @@ const openModal = (modal) => {
 
 // The logic in this function should all be handled in the Todo class.
 const generateTodo = (data) => {
-  const todo = new Todo(data, "#todo-template");
+  const todo = new Todo(data, "#todo-template", updateCounter);
   return todo.getView();
 };
 
@@ -72,6 +78,9 @@ addTodoForm.addEventListener("submit", (evt) => {
   };
   const todo = generateTodo(values);
   todosList.append(todo);
+
+  updateCounter();
+
   closeModal(addTodoPopup);
 
   newTodoValidator.resetValidation();
@@ -81,3 +90,5 @@ initialTodos.forEach((item) => {
   const todo = generateTodo(item);
   todosList.append(todo);
 });
+
+updateCounter();
