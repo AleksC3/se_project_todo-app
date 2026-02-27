@@ -50,8 +50,12 @@ const generateTodo = (data) => {
   return todo.getView();
 };
 
+const renderTodo = (item) => {
+  const todoElement = generateTodo(item);
+  todosList.append(todoElement);
+};
+
 addTodoButton.addEventListener("click", () => {
-  newTodoValidator.resetValidation();
   openModal(addTodoPopup);
 });
 
@@ -61,6 +65,11 @@ addTodoCloseBtn.addEventListener("click", () => {
 
 addTodoForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
+
+  if (!addTodoForm.checkValidity()) {
+    newTodoValidator.showErrors(); // ✅ show messages immediately
+    return;
+  }
   const name = evt.target.name.value;
   const dateInput = evt.target.date.value;
 
@@ -76,19 +85,18 @@ addTodoForm.addEventListener("submit", (evt) => {
     completed: false,
     id: uuidv4(),
   };
-  const todo = generateTodo(values);
-  todosList.append(todo);
+  renderTodo(values);
 
   updateCounter();
 
   closeModal(addTodoPopup);
 
+  addTodoForm.reset();
   newTodoValidator.resetValidation();
 });
 
 initialTodos.forEach((item) => {
-  const todo = generateTodo(item);
-  todosList.append(todo);
+  renderTodo(item);
 });
 
 updateCounter();
