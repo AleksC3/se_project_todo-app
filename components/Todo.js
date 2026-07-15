@@ -1,27 +1,23 @@
 class Todo {
-  constructor(data, selector, handleUpdateCounter, handleCheck, handleDelete) {
+  constructor(data, selector, handleCheck, handleDelete) {
     this._completed = data.completed;
     this._data = data;
 
     this._templateElement = document.querySelector(selector);
 
-    this._handleUpdateCounter = handleUpdateCounter;
     this._handleCheck = handleCheck;
     this._handleDelete = handleDelete;
   }
   _setEventListeners() {
     this._todoCheckboxEl.addEventListener("change", () => {
       this._toggleCompletion();
-      this._handleCheck(this._completed);
       this._data.completed = this._todoCheckboxEl.checked;
-      this._handleUpdateCounter();
+      this._handleCheck(this._completed);
     });
 
     this._todoDeleteBtn.addEventListener("click", () => {
       this._handleDelete(this._completed);
-      this._todoElement.remove();
-
-      this._handleUpdateCounter();
+      this._remove();
     });
   }
   _generateCheckboxEl() {
@@ -51,8 +47,7 @@ class Todo {
 
   _remove = () => {
     this._todoElement.remove();
-    //Advise to assign null to the element. It helps gargbage collector.
-    this._element = null;
+    this._todoElement = null;
   };
 
   getView() {

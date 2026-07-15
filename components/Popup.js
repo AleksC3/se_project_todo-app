@@ -1,7 +1,6 @@
 class Popup {
   constructor({ popupSelector }) {
     this._popupElement = document.querySelector(popupSelector);
-    this._popupCloseBtn = this._popupElement.querySelector(".popup__close");
     this._handleEscapeClose = this._handleEscapeClose.bind(this);
   }
   _handleEscapeClose(evt) {
@@ -20,11 +19,6 @@ class Popup {
     document.removeEventListener("keyup", this._handleEscapeClose);
   }
   setEventListeners() {
-    // This one listener will handle the close button and modal listener
-    //   this._popupCloseBtn.addEventListener("click", () => {
-    //   this.close();
-    //   });   // <= "if you do that you wont even need this"
-
     this._popupElement.addEventListener("mousedown", (evt) => {
       if (
         evt.target.classList.contains("popup__close") ||
